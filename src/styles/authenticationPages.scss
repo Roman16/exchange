@@ -1,0 +1,207 @@
+.authentication-action-btn {
+  height: 67px;
+  width: 302px;
+  margin: 0 auto;
+  font-size: 20px;
+  color: #fff;
+}
+
+//------------------------------------
+//-------------HOME-----------------
+//------------------------------------
+.home-page {
+  display: flex;
+
+  .title {
+    margin: 130px 0 0 0;
+    color: #464646;
+    font-family: Roboto;
+    font-size: 60px;
+    letter-spacing: 4.06px;
+    line-height: 65px;
+    font-weight: bold;
+  }
+
+  .description-to-title {
+    margin: 20px 0 0 0;
+    color: #464646;
+    font-family: Roboto;
+    font-size: 20px;
+    letter-spacing: 1.35px;
+  }
+
+  .btn {
+    margin: 100px 0 0 auto;
+    letter-spacing: 2px;
+  }
+
+  .image-block {
+    margin: 50px 0 0 170px;
+  }
+}
+
+//------------------------------------
+//-----------REGISTRATION-------------
+//------------------------------------
+.registration-page {
+
+  .checkbox {
+    display: flex;
+    width: 30%;
+    margin: 0 !important;
+  }
+
+  .btn {
+    margin: 35px auto 30px;
+  }
+
+  .go-to-login {
+    text-align: center;
+
+    a {
+      font-family: Roboto;
+      font-size: 15px;
+      letter-spacing: 1.5px;
+      color: #53BE4F;
+    }
+  }
+}
+
+.two-factor {
+  .form-title {
+    flex-direction: column;
+    margin-bottom: 0 !important;
+
+    hr {
+      width: 100%;
+      border-bottom: 0 solid rgba(0, 0, 0, 0.1) !important;
+      margin: 15px 0;
+    }
+  }
+
+  .description {
+    text-align: center;
+    color: #464646;
+    font-family: Roboto;
+    font-size: 15px;
+    letter-spacing: 1.25px;
+    line-height: 18px;
+  }
+
+  .switch-block {
+    margin: 90px 0;
+    display: flex;
+    justify-content: space-between;
+
+    label {
+      width: 50%;
+      color: #464646;
+      font-family: Roboto;
+      font-size: 15px;
+      letter-spacing: 1.25px;
+    }
+
+    .ant-switch {
+      height: 45px;
+      width: 101px;
+      background-color: rgba(191, 191, 191, 0.25);
+
+      &:after {
+        height: 40px;
+        width: 40px;
+        border-radius: 50%;
+        background-color: #53BE4F;
+        box-shadow: 0 2px 17px 0 rgba(0, 0, 0, 0.37);
+      }
+    }
+  }
+
+  .qr-code-block {
+    .description {
+      color: #464646;
+      font-size: 15px;
+      letter-spacing: 1.25px;
+    }
+    .qrCode {
+      width: 100px;
+      height: 100px;
+      margin: 30px auto;
+      background: #d3d3d3;
+    }
+
+    .enter-code {
+      margin: 20px 0;
+      text-align: center;
+
+    }
+  }
+
+  .or {
+    margin: 0 0 20px 0;
+    text-align: center;
+    color: #464646;
+    font-family: Roboto;
+    font-size: 15px;
+    letter-spacing: 1.25px;
+    opacity: .5;
+  }
+}
+
+//------------------------------------
+//--------------LOGIN-----------------
+//------------------------------------
+.login-page {
+  .btn {
+    width: 302px;
+    height: 67px;
+    margin: 35px auto 30px;
+    font-size: 20px;
+  }
+
+  .go-to-reset-pas {
+    text-align: end;
+    margin: 0 0 15px 0;
+
+    a {
+      color: #53BE4F;
+      font-family: Roboto;
+      font-size: 15px;
+      letter-spacing: 1.5px;
+    }
+  }
+
+  .go-to-login {
+    text-align: center;
+
+    a {
+      font-family: Roboto;
+      font-size: 15px;
+      letter-spacing: 1.5px;
+      color: #53BE4F;
+    }
+  }
+}
+
+//------------------------------------
+//-------------RESET PASS-------------
+//------------------------------------
+.reset-password-page {
+
+  .go-to-login {
+    text-align: center;
+    margin: 30px 0 0 0;
+
+    a {
+      font-family: Roboto;
+      font-size: 15px;
+      letter-spacing: 1.5px;
+      color: #53BE4F;
+    }
+  }
+
+  .recaptcha {
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+  }
+}

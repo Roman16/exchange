@@ -1,0 +1,96 @@
+.exchange-page {
+  padding: 60px 0 0 0;
+
+  .exchange-filters-block {
+    height: 84px;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 55px;
+    background: rgba(224, 224, 224, 0.50);
+
+    .size-container {
+      height: 100%;
+      display: flex;
+      align-items: center;
+
+      .form-item {
+        width: 226px;
+        margin: 0 5% 0 0;
+
+        label {
+          margin: 0 0 5px 0;
+        }
+
+        .ant-cascader-picker {
+          border-radius: 0 30px 30px 0;
+          height: 38px;
+          border: 1px solid rgba(70, 70, 70, 0.45);
+
+          input {
+            height: 100%;
+          }
+
+          &:focus .ant-cascader-input,
+          .ant-input:focus {
+            box-shadow: none;
+          }
+        }
+      }
+
+      .btn {
+        margin: 19px 0 0 auto;
+        height: 43px;
+        width: 184px;
+
+        i {
+          font-size: 20px;
+          margin: 2px 15px 0 0;
+        }
+      }
+    }
+  }
+}
+
+.ant-cascader-menus {
+  width: 226px;
+
+  .ant-cascader-menu {
+    width: 100%;
+    background: #fff;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+
+    li {
+      color: #464646;
+      font-family: Roboto;
+      font-size: 14px;
+      letter-spacing: 1.4px;
+
+      i {
+        font-size: 20px;
+      }
+
+      &.ant-cascader-menu-item-active {
+        background: #53BE4F;
+        color: #fff;
+
+        i {
+          color: #fff;
+        }
+      }
+    }
+  }
+}
+
+//orders list
+.orders-list {
+  .title-order-type {
+    margin: 0 0 20px 0;
+    color: #464646;
+    font-family: Roboto;
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 2px;
+  }
+}
