@@ -3,20 +3,39 @@ import {Icon} from 'antd';
 import Recaptcha from 'react-recaptcha';
 import {NavLink} from 'react-router-dom';
 
-import logo from '../img/logo_head.svg';
+import {LoginRequest} from '../actions/UserActions';
+
+import logo from '../assets/img/logo_head.svg';
 
 
 class LoginPage extends Component {
     state = {
-        onTwoFactor: false
+        onTwoFactor: false,
+
+        email: '',
+        password: ''
     };
 
     login = async (e) => {
+        e.preventDefault();
+
+        const {email, password} = this.state;
+        await LoginRequest({email, password});
+
         this.props.history.push('/exchange')
     };
 
+    handleChangeInput = (e) => {
+        const name = e.target.name,
+            value = e.target.value;
+
+        this.setState({
+            [name]: value
+        })
+    };
+
     render() {
-        const {onTwoFactor} = this.state;
+        const {onTwoFactor, email, password} = this.state;
 
         if (!onTwoFactor) {
             return (
@@ -43,6 +62,8 @@ class LoginPage extends Component {
                                 type="email"
                                 placeholder='exemple@gmail.com'
                                 name='email'
+                                value={email}
+                                onChange={this.handleChangeInput}
                             />
                         </div>
 
@@ -52,6 +73,8 @@ class LoginPage extends Component {
                                 type="password"
                                 placeholder='*********'
                                 name='password'
+                                value={password}
+                                onChange={this.handleChangeInput}
                             />
                         </div>
 

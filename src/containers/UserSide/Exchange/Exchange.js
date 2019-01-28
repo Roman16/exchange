@@ -2,8 +2,9 @@ import React, {Component} from 'react';
 import {Row, Col} from 'antd';
 
 import Filters from './Filters';
-import './exchange.scss';
 import OrdersList from "./OrdersList";
+
+import './exchange.scss';
 
 class Exchange extends Component {
 

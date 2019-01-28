@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: Roboto;
-  src: url(./fonts/Roboto/Roboto-Regular.ttf);
+  src: url(./assets/fonts/Roboto/Roboto-Regular.ttf);
 }
 
 body {
@@ -59,6 +59,25 @@ body {
   background: #59df55;
 
   color: #fff !important;
+}
+
+.ant-switch {
+  height: 45px !important;
+  width: 101px;
+  background: rgba(191, 191, 191, 0.25) !important;
+  &:after {
+    width: 41px !important;
+    height: 41px !important;
+    background-color: #53BE4F !important;
+    border-radius: 50% !important;
+  }
+}
+
+.ant-switch-checked {
+  background: #53BE4F !important;
+  &:after {
+    background-color: #fff !important;
+  }
 }
 
 a:focus {
@@ -167,6 +186,11 @@ a:focus {
     input {
       padding: 0;
     }
+  }
+
+  .ant-cascader-picker-arrow,
+  .ant-select-arrow-icon {
+    color: #53BE4F;
   }
 
   .ant-select-selection__rendered {

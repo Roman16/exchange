@@ -3,7 +3,9 @@ import {Icon, Select, Switch} from 'antd';
 import Recaptcha from 'react-recaptcha';
 import {NavLink} from 'react-router-dom';
 
-import logo from '../img/logo_head.svg';
+import logo from '../assets/img/logo_head.svg';
+
+import {RegistrRequest, GetCountries, LoginRequest} from '../actions/UserActions';
 
 const Option = Select.Option;
 
@@ -11,11 +13,53 @@ class RegistrationPage extends Component {
     state = {
         showTwoFactor: false,
         showTwoFactorQr: false,
+        qr: '',
+        countries: [],
+        totpCode: '',
+        user: {
+            username: '',
+            countryId: 13,
+            email: '',
+            password: '',
+            repeatPassword: ''
+        }
     };
 
-    handleRegistration = async () => {
+    handleRegistration = async (e) => {
+        e.preventDefault();
+
+        if (this.state.user.password === this.state.user.repeatPassword) {
+            const res = await RegistrRequest(this.state.user);
+
+            this.setState({
+                qr: res.qr,
+                showTwoFactor: true,
+            })
+        }
+    };
+
+    handleLogin = async (e) => {
+        e.preventDefault();
+        const {totpCode, user: {email, password}} = this.state;
+
+        await LoginRequest({
+            email,
+            password,
+            totpCode
+        });
+
+        this.props.history.push('/exchange');
+    };
+
+    handleChangeInput = (e) => {
+        const name = e.target.name,
+            value = e.target.value;
+
         this.setState({
-            showTwoFactor: true
+            user: {
+                ...this.state.user,
+                [name]: value
+            }
         })
     };
 
@@ -27,8 +71,15 @@ class RegistrationPage extends Component {
         })
     };
 
+    async componentDidMount() {
+        const countries = await GetCountries();
+        this.setState({
+            countries
+        })
+    }
+
     render() {
-        const {showTwoFactor, showTwoFactorQr} = this.state;
+        const {showTwoFactor, showTwoFactorQr, countries, qr, totpCode, username, email, password, repeatPassword} = this.state;
 
         if (!showTwoFactor) {
             return (
@@ -48,13 +99,15 @@ class RegistrationPage extends Component {
                         <hr/>
                     </div>
 
-                    <form action="">
+                    <form onSubmit={this.handleRegistration}>
                         <div className='form-item'>
                             <label htmlFor="">Ваше имя</label>
                             <input
                                 type="text"
                                 placeholder='Дмитрий'
-                                name='name'
+                                value={username}
+                                name='username'
+                                onChange={this.handleChangeInput}
                             />
                         </div>
 
@@ -64,11 +117,11 @@ class RegistrationPage extends Component {
                                 showSearch
                                 placeholder="Украина"
                                 optionFilterProp="children"
-                                onChange={e => console.log(e)}
+                                onChange={e => this.setState({countryId: +e})}
                             >
-                                <Option value="jack">US</Option>
-                                <Option value="lucy">UA</Option>
-                                <Option value="tom">RU</Option>
+                                {countries.map(country => (
+                                    <Option key={country.id} value={country.id}>{country.name}</Option>
+                                ))}
                             </Select>
                         </div>
 
@@ -78,6 +131,8 @@ class RegistrationPage extends Component {
                                 type="email"
                                 placeholder='exemple@gmail.com'
                                 name='email'
+                                value={email}
+                                onChange={this.handleChangeInput}
                             />
                         </div>
 
@@ -87,6 +142,8 @@ class RegistrationPage extends Component {
                                 type="password"
                                 placeholder='*********'
                                 name='password'
+                                value={password}
+                                onChange={this.handleChangeInput}
                             />
                         </div>
 
@@ -95,7 +152,9 @@ class RegistrationPage extends Component {
                             <input
                                 type="password"
                                 placeholder='*********'
-                                name='password'
+                                name='repeatPassword'
+                                value={repeatPassword}
+                                onChange={this.handleChangeInput}
                             />
                         </div>
 
@@ -112,7 +171,7 @@ class RegistrationPage extends Component {
                             />
                         </div>
 
-                        <button className='btn authentication-action-btn' onClick={this.handleRegistration}>
+                        <button className='btn authentication-action-btn'>
                             Зарегистрироваться
                         </button>
 
@@ -127,7 +186,8 @@ class RegistrationPage extends Component {
         } else {
             return (
                 <div className="two-factor separate-form">
-                    <div className='go-back-btn' onClick={() => this.setState({showTwoFactor: false, showTwoFactorQr: false})}>
+                    <div className='go-back-btn'
+                         onClick={() => this.setState({showTwoFactor: false, showTwoFactorQr: false})}>
                         <Icon type="left"/>
                         Назад
                     </div>
@@ -167,7 +227,7 @@ class RegistrationPage extends Component {
                                 </div>
 
                                 <div className='qrCode'>
-
+                                    <img src={qr} alt=""/>
                                 </div>
 
                                 <hr/>
@@ -175,18 +235,28 @@ class RegistrationPage extends Component {
                                 <div className='enter-code'>
                                     Введите полученный код из приложения Google authenticator
                                 </div>
-                                
-                                <div className='form-item'>
-                                    <label htmlFor="">Шестизначный код</label>
-                                    <input type="text"/>
-                                </div>
+
+                                <form onSubmit={this.handleLogin}>
+                                    <div className='form-item'>
+                                        <label htmlFor="">Шестизначный код</label>
+                                        <input
+                                            type="text"
+                                            value={totpCode}
+                                            onChange={e => this.setState({totpCode: e.target.value})}
+                                        />
+                                    </div>
+
+                                    <button className='btn authentication-action-btn'>
+                                        Войти
+                                    </button>
+                                </form>
                             </div>
                             : ''}
 
 
                         <div className="or">Или</div>
 
-                        <button className='btn authentication-action-btn'>
+                        <button className='btn authentication-action-btn' onClick={this.handleLogin}>
                             Перейти к бирже
                         </button>
                     </form>

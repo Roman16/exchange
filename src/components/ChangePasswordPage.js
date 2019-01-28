@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Icon} from 'antd';
 import Recaptcha from 'react-recaptcha';
 
-import logo from '../img/logo_head.svg';
+import logo from '../assets/img/logo_head.svg';
 
 
 class ChangePasswordPage extends Component {

@@ -3,7 +3,7 @@ import {Icon} from 'antd';
 import Recaptcha from 'react-recaptcha';
 import {NavLink} from 'react-router-dom';
 
-import logo from '../img/logo_head.svg';
+import logo from '../assets/img/logo_head.svg';
 
 
 class ResetPasswordPage extends Component {

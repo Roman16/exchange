@@ -94,13 +94,13 @@ const OrdersList = ({list, type}) => {
                 columns={columns}
                 className='user-table'
                 pagination={false}
-                onRow={(record, rowIndex) => {
-                    return {
-                        onMouseEnter: (event) => {
-                            console.log(event);
-                        }
-                    };
-                }}
+                // onRow={(record, rowIndex) => {
+                //     return {
+                //         onMouseEnter: (event) => {
+                //             console.log(event);
+                //         }
+                //     };
+                // }}
             />
         </div>
     )

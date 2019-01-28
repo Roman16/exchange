@@ -7,6 +7,8 @@ import LoginPage from "./components/LoginPage";
 import ResetPasswordPage from "./components/ResetPasswordPage";
 import ChangePasswordPage from "./components/ChangePasswordPage";
 import Exchange from "./containers/UserSide/Exchange/Exchange";
+import Profile from "./containers/UserSide/Profile/Profile";
+
 
 const Routes = () => {
     return (
@@ -20,6 +22,7 @@ const Routes = () => {
 
                 {/*USER SIDE*/}
                 <Route path='/exchange' component={Exchange}/>
+                <Route path='/profile' component={Profile}/>
             </Switch>
         </Fragment>
     )
